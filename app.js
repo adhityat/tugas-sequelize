@@ -8,6 +8,9 @@ const port = 3000
 app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.set('view engine', 'ejs');
+app.use(express.static('assets'))
+
 
 app.use('/', routing)
 
