@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sq = require('../config/connectionSequelize')
+const sq = require('../config/connection')
 
 const ModelUser = sq.define('User', {
   
@@ -10,14 +10,17 @@ const ModelUser = sq.define('User', {
   },
   name: {
     type: DataTypes.STRING,
-    length:30
+    length:30,
+    allowNull:false
   },
   password: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull:false
   },
   email: {
     type: DataTypes.STRING,
-    length:30
+    length:30,
+    allowNull:false
   }
 }, {
  

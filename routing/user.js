@@ -1,7 +1,8 @@
-const router = require('express').Router()
-const controller = require('../controller/controller')
+const express = require('express')
+const router = express.Router();
+const userController = require('../controller/User')
 
-router.post('/insertuser', controller.tambahUser)
-router.post('/inserttodo', controller.tambahTodo)
+router.post('/insertuser', userController.tambahUser)
+
 
 module.exports = router

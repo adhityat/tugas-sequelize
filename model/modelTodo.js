@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
-const sq = require('../config/connectionSequelize')
+const sq = require('../config/connection');
+const ModelUser = require('../model/modelUser');
 
 
 const ModelTodo = sq.define('Todo', {
@@ -15,13 +16,15 @@ const ModelTodo = sq.define('Todo', {
     },
     status: {
       type: DataTypes.INTEGER,
-      
-  
+       
     },
   }, {
    
   });
   
-  ModelTodo.sync({alter:true})
+    ModelTodo.belongsTo(ModelUser);
+    ModelUser.hasMany(ModelTodo);
+
+    ModelTodo.sync({alter:true})
   
   module.exports = ModelTodo;
