@@ -8,7 +8,7 @@ class Todo {
        let data = await ModelTodo.findAll({ 
         include : ModelUser
         })
-        console.log(data)
+        // console.log(data)
         res.render('todo/list', {data})
     }
     static formTambah(req, res){
