@@ -1,0 +1,26 @@
+<html>
+    <body>
+       
+       <table>
+           <thead>
+               <tr>
+                   <th>Nama Kegiatan</th>
+                   <th>Status</th>
+                   <th>Nama</th>
+                   <th>option</th>
+               </tr>
+           </thead>
+           <tbody>
+               <% for(let i =0; i < data.length; i++){ %>
+                    <tr>
+                        <td><%= data[i].kegiatan%></td>
+                        <td><%= (data[i].status==0)? 'belum': 'sudah'%></td>
+                        <td><%= data[i].User.name%></td>
+                        <td><a href="/todo/edit/<%= data[i].id%>">[EDIT]</a>
+                            <a href="/todo/delete/<%= data[i].id%>">[HAPUS]</a></td>
+                    </tr>
+                <%}%>
+           </tbody>
+       </table>
+    </body>
+</html>

@@ -1,14 +1,53 @@
 const ModelUser = require('../model/modelUser')
-
+const {hashPassword, compare} = require('../helper/bcrypt');
+const {generateToken} = require('../helper/jwt');
 
 class User {
+    static async formTambah(req, res){
+        res.render('user/register')
+    }
+
     static tambahUser(req, res){
-        ModelUser.create(req.body).then(response => {
-            res.json(response)
+        let post = req.body;
+        post.password = hashPassword(post.password);
+        ModelUser.create(post).then(response => {
+            res.redirect('/user/login')
         }).catch(err => {
             console.log(err)
         })
     }
+
+    static formLogin(req, res){
+        res.render('user/login');
+    }
+
+    static async login(req, res){
+        let data = await ModelUser.findAll({
+            where :   {
+                       name : req.body.name
+                       }
+           })
+    
+           if(data.length> 0){
+                if(compare(req.body.password, data[0].dataValues.password)){
+                    
+                    let token = generateToken(data[0].dataValues);
+                    req.session.token= token;
+                    req.session.save(function(err) {
+                        if(!err){
+                            res.redirect('/todo/list')
+                        }
+                      
+                      })
+                  
+                }else{
+                    res.json({status:'password anda salah'})
+                }
+           }else{
+               res.json({status:'anda tidak terdaftar'})
+           }
+          
+        }
 }
 
 module.exports = User
