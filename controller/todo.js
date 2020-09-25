@@ -36,7 +36,7 @@ class Todo {
 
     static edit(req, res){
         ModelTodo.update(req.body, { where: { id: req.params.id } }).then((response)=>{
-            res.redirect('todo/edit')
+            res.redirect('/todo/list')
         }).catch(err=>{
             res.json(err);
         })

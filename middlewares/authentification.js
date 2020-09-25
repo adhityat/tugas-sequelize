@@ -3,7 +3,7 @@ const  modelUser  = require('../model/modelUser')
 
 
 function authentification(req, res, next){
-     console.log(req.session)
+    //  console.log(req.session)
     if(req.session.token){
         const decode = verifyToken(req.session.token)
 

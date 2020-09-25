@@ -16,6 +16,7 @@ const ModelTodo = sq.define('Todo', {
     },
     status: {
       type: DataTypes.INTEGER,
+      defaultValue: 0
        
     },
   }, {
