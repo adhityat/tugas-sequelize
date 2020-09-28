@@ -1,26 +1,198 @@
 <html>
+    <head>
+        <title>TO DO LIST</title>
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/todolist.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            
+            /* Tabs panel */
+            .tabbable-panel {
+                border:1px solid #eee;
+                padding: 10px;
+            }
+
+            /* Default mode */
+            .tabbable-line > .nav-tabs {
+                border: none;
+                margin: 0px;
+            }
+            .tabbable-line > .nav-tabs > li {
+                margin-right: 2px;
+            }
+            .tabbable-line > .nav-tabs > li > a {
+                border: 0;
+                margin-right: 0;
+                color: #737373;
+            }
+            .tabbable-line > .nav-tabs > li > a > i {
+                color: #a6a6a6;
+            }
+            .tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+                border-bottom: 4px solid #fbcdcf;
+            }
+            .tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+                border: 0;
+                background: none !important;
+                color: #333333;
+            }
+            .tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+                color: #a6a6a6;
+            }
+            .tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+                margin-top: 0px;
+            }
+            .tabbable-line > .nav-tabs > li.active {
+                border-bottom: 4px solid #f3565d;
+                position: relative;
+            }
+            .tabbable-line > .nav-tabs > li.active > a {
+                border: 0;
+                color: #333333;
+            }
+            .tabbable-line > .nav-tabs > li.active > a > i {
+                color: #404040;
+            }
+            .tabbable-line > .tab-content {
+                margin-top: -3px;
+                background-color: #fff;
+                border: 0;
+                border-top: 1px solid #eee;
+                padding: 15px 0;
+            }
+            .portlet .tabbable-line > .tab-content {
+                padding-bottom: 0;
+            }
+
+            /* Below tabs mode */
+
+            .tabbable-line.tabs-below > .nav-tabs > li {
+                border-top: 4px solid transparent;
+            }
+            .tabbable-line.tabs-below > .nav-tabs > li > a {
+                margin-top: 0;
+            }
+            .tabbable-line.tabs-below > .nav-tabs > li:hover {
+                border-bottom: 0;
+                border-top: 4px solid #fbcdcf;
+            }
+            .tabbable-line.tabs-below > .nav-tabs > li.active {
+                margin-bottom: -2px;
+                border-bottom: 0;
+                border-top: 4px solid #f3565d;
+            }
+            .tabbable-line.tabs-below > .tab-content {
+                margin-top: -10px;
+                border-top: 0;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+            }
+            .nav-tabs > li, .nav-pills > li {
+                float:none;
+                display:inline-block;
+                *display:inline;
+                zoom:1;
+            }
+
+            .nav-tabs, .nav-pills {
+                text-align:center;
+            }
+        </style>    
+    </head>
     <body>
-       
-       <table>
-           <thead>
-               <tr>
-                   <th>Nama Kegiatan</th>
-                   <th>Status</th>
-                   <th>Nama</th>
-                   <th>option</th>
-               </tr>
-           </thead>
-           <tbody>
-               <% for(let i =0; i < data.length; i++){ %>
-                    <tr>
-                        <td><%= data[i].kegiatan%></td>
-                        <td><%= (data[i].status==0)? 'belum': 'sudah'%></td>
-                        <td><%= data[i].User.name%></td>
-                        <td><a href="/todo/edit/<%= data[i].id%>">[EDIT]</a>
-                            <a href="/todo/delete/<%= data[i].id%>">[HAPUS]</a></td>
-                    </tr>
-                <%}%>
-           </tbody>
-       </table>
+        <div class="container"> 
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="satu">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 style="text-align: center;">TO DO LIST</h1>
+                                <a href="/user/logout"><button style="font-size:15px;border-radius: 10px;">Sign Out <i class="fa fa-sign-out"></i></button></a>
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-md-12">
+                                <form method="POST" action="/todo/list">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 80%;">
+                                                <input type="text" class="form-control" name="kegiatan" placeholder="Isikan Nama Kegiatan">
+                                            </td>
+                                            
+                                            <td style="width: 20%;">
+                                                <button class="btn btn-primary btn-block" type="submit">Simpan</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-12" style="overflow-y: scroll;">
+                                <table class="table table-bordered table-hover" style="padding: 20px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Nama Kegiatan</th>
+                                            <th>Status</th>
+                                            <th style="text-align: center;">Option</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <% for(let i =0; i < data.length; i++){ %>
+                                        <tr>
+                                            <td><%= data[i].User.name%></td>
+                                            <td><%= data[i].kegiatan%></td>
+                                            <td><%= (data[i].status==0)? 'Belum': 'Sudah'%></td>
+                                            <td style="text-align: center;">
+                                                <a href="/todo/edit/<%= data[i].id%>"><button class="btn btn-primary" type="submit">Edit</button></a>
+                                                <a href="/todo/delete/<%= data[i].id%>"><button class="btn btn-primary" type="submit">Delete</button></a>
+                                            </td>
+                                        </tr>
+                                        <%}%>
+                                   </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <!-- <div class="container">
+           <div class="row">
+               <div class="col-md-12">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nama Kegiatan</th>
+                                <th>Status</th>
+                                <th>Nama</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i =0; i < data.length; i++){ %>
+                                <tr>
+                                    <td><%= data[i].kegiatan%></td>
+                                    <td><%= (data[i].status==0)? 'belum': 'sudah'%></td>
+                                    <td><%= data[i].User.name%></td>
+                                    <td><a href="/todo/edit/<%= data[i].id%>">[EDIT]</a>
+                                        <a href="/todo/delete/<%= data[i].id%>">[HAPUS]</a></td>
+                                </tr>
+                            <%}%>
+                        </tbody>
+                    </table>
+               </div>
+           </div>
+       </div> -->
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
 </html>

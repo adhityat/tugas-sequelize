@@ -1,0 +1,68 @@
+body{
+
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    font-family: sans-serif;
+    background-image: url(../images/biru.jpeg); 
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+   }
+
+   .register{
+   
+    width: 350px;
+    height: auto;
+    padding: 10px 10px;
+    background-color:white;
+    text-align: center;
+    /* position: relative; */
+    border-radius: 20px;
+    box-sizing: border-box;
+
+  }
+
+  .register input[type = "text"], .register input[type = "text"], .register input[type = "password"]{
+
+    border: 0;
+    background: none;
+    display: block;
+    margin: 0px auto;
+    text-align: center;   
+    border: 2px solid #32e0c4;   
+    padding: 5px 10px;   
+    width: 200px;   
+    outline: none; 
+    /* color: #e97171;  */
+    border-radius: 5px; 
+    transition: 0.25s;
+   
+   }
+
+      .register input[type = "text"]:focus, .register input[type = "text"]:focus, .register input[type = "password"]:focus{
+
+        width: 250px;
+       
+        border-color: #2ecc71;
+       
+       }
+
+    .register .registerbtn {
+        border-radius: 4px;
+        border: 1px solid teal;
+        background-color: white;
+
+    }
+
+     .register button:hover{
+        background: #ccf6c8;
+        font-size: 17px
+    }
+    

@@ -31,6 +31,7 @@ class Todo {
                         id : req.params.id
                         }
             })
+            // console.log(data)
         res.render('todo/edit', {data});
     }
 

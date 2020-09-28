@@ -1,0 +1,15 @@
+.satu {
+    background-color: #fff;
+    /* height: 500px; */
+    border-radius: 10px;
+    margin-top: 80px;
+    padding: 30px 30px;
+    box-shadow: 40px -15px teal; border: 5px solid #132743;
+}
+
+body{
+    background: url(../images/biru.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+

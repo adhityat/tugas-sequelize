@@ -1,12 +1,46 @@
+<!DOCTYPE html>
 <html>
-
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="/css/formregister.css">
+    </head>
     <body>
         <form action="/user/register" method="POST">
+            <div class="register" style="padding-top: 30px; padding-bottom: 30px; box-shadow: 40px -15px teal; border: 5px solid #132743;">
+                <h1>Register</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+        
+                <label for="name"><b>Full Name</b></label>
+                <input type="text" placeholder="Enter Name" name="name" required>
+        
+                <br>
+                <label for="email"><b>E-mail</b></label>
+                <input type="text" placeholder="Enter E-mail" name="email" required>
+        
+                <br>
+                <label for="pwd"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+        
+                <hr>
+               
+                <button type="submit" class="registerbtn" >Register</button>
+        
+                <p><p>Already have an account? <a href="/user/login">Sign in</a>.</p></p>
+            </div>
+          
+            </form>
+        <!-- <form action="/user/register" method="POST">
             <input type="text" name="name" placeholder="masukkan username">
             <input type="password" name="password" placeholder="masukkan password">
             <input type="text" name="email" placeholder="masukkan email">
             <input type="submit" value="SIMPAN">
-        </form>
+        </form> -->
         
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </html>

@@ -18,7 +18,7 @@ class User {
     }
 
     static formLogin(req, res){
-        res.render('user/login');
+        res.render('user/login', { pesan: '' });
     }
 
     static async login(req, res){
@@ -41,12 +41,16 @@ class User {
                       })
                   
                 }else{
-                    res.json({status:'password anda salah'})
+                    res.render('user/login', { pesan: 'Password Anda Salah' })
                 }
            }else{
-               res.json({status:'anda tidak terdaftar'})
+            res.render('user/login', { pesan: 'Username Belum Terdaftar' })
            }
           
+        }
+    static logout(req,res){
+            req.session.destroy()
+            res.redirect('/user/login')
         }
 }
 

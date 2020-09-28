@@ -1,22 +1,29 @@
 const { verifyToken } = require('../helper/jwt')
 const  User  = require('../model/modelUser')
+const todo = require('../model/modelTodo')
 
 
 const authorization = (req, res, next) => {
-    const userId = req.user.id
-    const { id } = req.params
-    User.findOne(id, 'id')
-      .then( data => {
-        //   console.log(data)
-        if(data[0].id == userId){
+  const decode = verifyToken(req.session.token);
+  const { id } = req.params
+  // console.log(id,'<<<paramsss')
+  todo.findAll({
+      where:{
+          id:id,
+          UserId : decode.id
+      }
+  })
+    .then( data => {
+        // console.log(data)
+        if (data.length > 0) {
           next()
-        } else {
-          next({status: 400, msg: ' ini Bukan Akun Anda'})
-        }
-      })
-      .catch(err => {
-        next(err)
-      })
-  }
+      } else {
+          next("Maaf ini bukan id anda");
+      }
+    })
+    .catch(err => {
+      next(err)
+    })
+}
 
-module.exports = authorization
+module.exports =  { authorization }

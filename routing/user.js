@@ -8,5 +8,6 @@ router.post('/register', userController.tambahUser)
 
 router.get('/login', userController.formLogin)
 router.post('/login', userController.login)
+router.get('/logout', userController.logout)
 
 module.exports = router
